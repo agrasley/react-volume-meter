@@ -50,7 +50,7 @@ const VolumeMeter = React.createClass({
 
   componentWillUpdate (nextProps) {
     if (!this.props.src && nextProps.src) {
-      const { audioContext, src } = this.props
+      const { audioContext, src } = nextProps
       this.analyser = audioContext.createAnalyser()
       src.connect(this.analyser)
       this.array = new Uint8Array(this.analyser.frequencyBinCount)
