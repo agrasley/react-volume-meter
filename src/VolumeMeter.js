@@ -81,13 +81,14 @@ const VolumeMeter = React.createClass({
   },
 
   render () {
-    const { width, height } = this.props
+    const { width, height, style } = this.props
 
     return (
       <canvas
         ref='canvas'
         width={width}
         height={height}
+        style={style}
       />
     )
   },
@@ -98,7 +99,8 @@ const VolumeMeter = React.createClass({
     src: PropTypes.object,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    maxVolume: PropTypes.number
+    maxVolume: PropTypes.number,
+    style: PropTypes.object
   }
 })
 
