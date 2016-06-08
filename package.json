@@ -1,6 +1,6 @@
 {
   "name": "react-volume-meter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A volume meter React component",
   "main": "lib/index.js",
   "scripts": {
