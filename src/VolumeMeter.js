@@ -5,10 +5,13 @@ import React, { PropTypes } from 'react'
 const draw = (width, height, canvasCtx, volume) => {
   canvasCtx.clearRect(0, 0, width, height)
   for (let i = 0; i < 5; i++) {
-    canvasCtx.fillStyle = (i * 255 / 5 < volume) ? 'green' : 'grey'
+    canvasCtx.fillStyle = ((i + 1) * 10 < volume) ? 'green' : 'grey'
     const x = width * i / 5
     const y = height * 0.6 - height * i * 0.15
     canvasCtx.fillRect(x, y, width / 6, height - y)
+    if (i * 10 < volume) {
+      canvasCtx.fillRect(x, y, ((volume % 10) / 10) * (width / 6), height - y)
+    }
   }
 }
 
@@ -38,7 +41,10 @@ const VolumeMeter = React.createClass({
   },
 
   stop () {
+    const { width, height } = this.props
+    const canvasCtx = this.refs.canvas.getContext('2d')
     window.cancelAnimationFrame(this.rafId)
+    draw(width, height, canvasCtx, 0)
   },
 
   componentDidMount () {
