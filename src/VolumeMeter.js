@@ -16,7 +16,7 @@ const draw = (width, height, canvasCtx, prevVolume, volume, maxVolume) => {
     const x = width * i / 5
     const y = height * 0.6 - height * i * 0.15
     canvasCtx.fillRect(x, y, width / 6, height - y)
-    if (canvasCtx.fillStyle === 'grey' && i * 10 < vol) {
+    if (vol < maxVolume && i * 10 < vol) {
       canvasCtx.fillStyle = 'green'
       canvasCtx.fillRect(x, y, ((vol % (maxVolume / 5)) / (maxVolume / 5)) * (width / 6), height - y)
     }
