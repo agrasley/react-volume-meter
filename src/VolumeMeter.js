@@ -6,11 +6,17 @@ const draw = (width, height, canvasCtx, prevVolume, volume, maxVolume) => {
   const vol = Math.max(volume, prevVolume * 0.95)
   canvasCtx.clearRect(0, 0, width, height)
   for (let i = 0; i < 5; i++) {
-    canvasCtx.fillStyle = ((i + 1) * (maxVolume / 5) < vol) ? 'green' : 'grey'
+    if (i === 4 && maxVolume < vol) {
+      canvasCtx.fillStyle = 'red'
+    } else if ((i + 1) * (maxVolume / 5) < vol) {
+      canvasCtx.fillStyle = 'green'
+    } else {
+      canvasCtx.fillStyle = 'grey'
+    }
     const x = width * i / 5
     const y = height * 0.6 - height * i * 0.15
     canvasCtx.fillRect(x, y, width / 6, height - y)
-    if (i * 10 < vol) {
+    if (canvasCtx.fillStyle === 'grey' && i * 10 < vol) {
       canvasCtx.fillStyle = 'green'
       canvasCtx.fillRect(x, y, ((vol % (maxVolume / 5)) / (maxVolume / 5)) * (width / 6), height - y)
     }
